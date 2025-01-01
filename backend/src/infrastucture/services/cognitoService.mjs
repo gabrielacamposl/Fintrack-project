@@ -5,7 +5,7 @@ const cognito = new AWS.CognitoIdentityServiceProvider();
 
 export const registerUser = async (email, password, name, surname) => {
     const params = {
-        ClientId: '45d19d42089k2t28nc386jum98', // ID del Cliente
+        ClientId: '', // ID del Cliente
         Username: email,
         Password: password,
         UserAttributes: [
