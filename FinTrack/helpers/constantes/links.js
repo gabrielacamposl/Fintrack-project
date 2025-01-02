@@ -1,16 +1,16 @@
 //--> Crear usuario
-export const nuevoDoc = "http://localhost:4444/api/doctores"
-export const validarToken = "http://localhost:4444/api/doctores/confirmar/"
+export const nuevoUser = ""
+export const validarToken = ""
 
 //--> Iniciar sesion
-export const loginDoc = "http://localhost:4444/api/doctores/login"
+export const login = ""
 
 //--> Resetear password
-export const resetearPassword = "http://localhost:4444/api/doctores/olvide-password"
-export const tokenResetearPassword = "http://localhost:4444/doctores/olvide-password/"
-export const cambiarPassword = "http://localhost:4444/api/doctores/olvide-password/"
+export const resetearPassword = ""
+export const tokenResetearPassword = ""
+export const cambiarPassword = ""
 
 
 //----DATOS USUARIO-------
-export const modificarDatos = "http://localhost:4000/api/doctores/main/modificar-informacion"
+export const modificarDatos = ""
 

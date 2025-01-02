@@ -1,5 +1,8 @@
 import React, { useContext } from 'react';
 import { LayoutContext } from './context/layoutcontext';
+import logo from '../imagenes/login/FTl.jpg';
+import styles from '../styles/styles.module.css';
+import Image from 'next/image';
 
 const AppFooter = () => {
   const { layoutConfig } = useContext(LayoutContext);
@@ -9,15 +12,16 @@ const AppFooter = () => {
       <div className="footer">
         <div className='grid grid-nogutter surface-section px-4 py-4 md:px-6 lg:px-8 border-top-1 surface-border'>
           <div className='col-12 lg:col-6 lg:border-right-1 surface-border'>
-          <img src={`/XZY.svg`} width="47.22px" height={'35px'} widt={'true'} alt="logo" />
-          <span className='text-900 block mt-4 mr-3'>Una empresa dedicada al cuidado se su salud, con la mejor tecnología y los mejores profesionistas.</span>
-          <span className='text-500 block mt-4'> © 2023 XiZhongYao, S.A. Todos los derechos reservados.</span>
+          <Image src={logo} className={styles['logo']} alt="Mi imagen" priority={true} style={{ width: '40px', height: '40px' }}  />
+          <br/>
+          <span className='text-900 b lock mt-4 mr-3'>Una aplicación dedicada al análisis de movimientos bancarios.</span>
+          <span className='text-500 block mt-4'> © 2024 FinTrack, S.A. Todos los derechos reservados.</span>
           </div>
           <div className='col-12 md:col-6 lg:col-3 mt-4 lg:mt-0 lg:pl-4 flex flex-column'>
             <span className='text-900 text-xl font-medium block'>Compañía</span>
             <ul className='list-none p-0'>
               <li>
-                <a tabIndex={0} className='text-600 hover:text-900 transition-duration-150 cursor-pointer mt-3 block'>Sobre XiZhongYao</a>
+                <a tabIndex={0} className='text-600 hover:text-900 transition-duration-150 cursor-pointer mt-3 block'>Sobre FinTrack</a>
               </li>
               <li>
                 <a tabIndex={0} className='text-600 hover:text-900 transition-duration-150 cursor-pointer mt-3 block'>¿Quiénes somos?</a>
@@ -25,13 +29,13 @@ const AppFooter = () => {
             </ul>
           </div>
           <div className='col-12 md:col-6 lg:col-3 mt-4 lg:mt-0 lg:pl-4 flex flex-column'>
-            <span className='text-900 text-xl font-medium block'>Para Pacientes</span>
+            <span className='text-900 text-xl font-medium block'>Para Usuarios</span>
             <ul className='list-none p-0'>
               <li>
-                <a tabIndex={0} className='text-600 hover:text-900 transition-duration-150 cursor-pointer mt-3 block'>Especialistas</a>
+                <a tabIndex={0} className='text-600 hover:text-900 transition-duration-150 cursor-pointer mt-3 block'>Análisis de Movimientos Bancarios</a>
               </li>
               <li>
-                <a tabIndex={0} className='text-600 hover:text-900 transition-duration-150 cursor-pointer mt-3 block'>Diagnóstico por Interpretaciones</a>
+                <a tabIndex={0} className='text-600 hover:text-900 transition-duration-150 cursor-pointer mt-3 block'>Gráficos del Análisis</a>
               </li>
             </ul>
           </div>

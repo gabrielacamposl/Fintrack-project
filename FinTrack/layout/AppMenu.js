@@ -7,17 +7,16 @@ const AppMenu = () => {
   const model = [
   
     {
-      label: 'Disponibilidad de Citas',
+      label: 'Análisis',
       items: [
-        { label: 'Gestión de citas', icon: 'pi pi-calendar-plus', to: '/pages/Citas/gestionCitas' },
+        { label: 'Movimientos Bancarios', icon: 'pi pi-dollar', to: '/pages/usuario/mov_bancarios' },
 
       ]
     },
     {
-      label: 'Visualización de Citas',
+      label: 'Visualización de Movimientos',
       items: [
-        { label: 'Citas Por Confirmar', icon: 'pi pi-book', to: '/pages/usuario/PerfilDoc/citasProgra' },
-        { label: 'Citas Programadas', icon: 'pi pi-calendar', to: '/pages/usuario/PerfilDoc/citasAceptadas' },
+        { label: 'Visualización de Gráficos', icon: 'pi pi-book', to: '/pages/usuario/mov_bancarios' }
       ]
     },
    

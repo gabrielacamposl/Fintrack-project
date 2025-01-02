@@ -118,7 +118,7 @@ const Layout = (props) => {
         <meta name="description" content={`${props.description}`} />
         <meta name="robots" content="index, follow" />
         <meta name="viewport" content="initial-scale=1, width=device-width" />
-        <link rel="icon" href={`/XZY.ico`} type="image/x-icon"></link>
+        <link rel="icon" href={`/FT.ico`} type="image/x-icon"></link>
       </Head>
 
       <div className={containerClass} style={estiloDelFondo}>

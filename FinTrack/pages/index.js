@@ -4,19 +4,18 @@ import Head from 'next/head';
 import AppConfig from '@/layout/AppConfig';;
 import { Divider } from 'primereact/divider';
 import React, { useRef, useState } from 'react';
-
 import axios from 'axios';
 import { Button } from 'primereact/button';
 import { Message } from 'primereact/message';
 import { Password } from 'primereact/password';
 import { InputText } from 'primereact/inputtext';
-
 import * as components from './components';
 import Image from 'next/image';
 import logo2 from '../imagenes/login/FT.jpg';
 import logo from '../imagenes/login/FTl.jpg';
+import logoN from '/imagenes/login/FT.jpg';
 import styles from '../styles/styles.module.css';
-import { loginDoc, resetearPassword } from '@/components/mensajesNotificaciones/links';
+import { login, resetearPassword } from '@/components/mensajesNotificaciones/links';
 import {
   campoVacio, camposVacios, emailInvalido, passwordInvalido, resetearExitoso
 } from '@/components/mensajesNotificaciones/mensajes';
@@ -75,9 +74,9 @@ export default function Login() {
     } else { setEstiloPassword('') }
     setMensajeRespuesta('')
     //--> Validar envio a back-end
-    console.log(loginDoc)
+    console.log(login)
     try {
-      const respuesta = await axios.post(loginDoc, { emailDoctor: email, passwordDoctor: password })
+      const respuesta = await axios.post(login, { email: email, password: password })
       if (respuesta.status === 200) {
 
         localStorage.setItem('token', respuesta.data.token)
@@ -110,7 +109,7 @@ export default function Login() {
     } else { setEstiloEmailRec('') }
 
     try {
-      const respuesta = await axios.post(resetearPassword, { emailDoctor: emailrecuperar })
+      const respuesta = await axios.post(resetearPassword, { email: emailrecuperar })
       if (respuesta.status === 200) {
         // --> Limpiar variables
         setEmailrecuperar('')
@@ -132,35 +131,45 @@ export default function Login() {
   }
  // Manejar el clic del botón
  
-  const Topbar = () => {
-    return (
-      <div className="topbar">
-        <div className='surface-overlay py-3 px-6 shadow-2 flex align-items-center justify-content-between relative lg:static'>
-          <img src={`FT.svg`} width="50px" height={'50px'} widt={'true'} alt="logo" />
-          <span>FinTrack</span>
-          <a className='p-ripple cursor-pointer block lg:hidden text-700'>
-            <i className='pi pi-bars text-4x1'>
-            </i>
-          </a>
-          <div className='align-items-center flex-grown-1 hidden lg:flex absolute lg:static w-full surface-overlay left-0 top-100 px-6 lg:px-0 z-2 shadow-2 lg:shadow-none'>
-            <ul className='list-none p-0 m-0 flex lg:align-items-center text-900 select-none flex-column lg:flex-row cursor-pointer lg:w-4'></ul>
-          </div>
-          <div className='flex justify-content-end lg:text-right lg:block border-top-1 lg:border-top-none surface-border py-3 lg:py-0 mt-3 lg:mt-0 lg:w-4'>
-            <Button className=' p-button p-component font-bold p-button-outolined p-button-rounded  ' onClick={() => { router.push('/login') }}> Iniciar Sesión</Button>
-          </div>
-
+ const Topbar = () => {
+  return (
+    <div className="topbar" >
+      <div className=' py-3 px-6 shadow-2 flex align-items-center justify-content-between relative lg:static' style={{ backgroundColor: '#13121A' }}>
+      <Image src={logoN} className={styles['logo']} alt="Mi imagen" priority={true} style={{ width: '50px', height: '50px' }} />
+        <components.Title4>FinTrack</components.Title4>
+        <a className='p-ripple cursor-pointer block lg:hidden text-700'>
+          <i className='pi pi-bars text-4x1'>
+          </i>
+        </a>
+        <div className='align-items-center flex-grown-1 hidden lg:flex absolute lg:static w-full surface-overlay left-0 top-100 px-6 lg:px-0 z-2 shadow-2 lg:shadow-none'>
+          <ul className='list-none p-0 m-0 flex lg:align-items-center text-900 select-none flex-column lg:flex-row cursor-pointer lg:w-4'></ul>
         </div>
-
+        <div className='flex justify-content-end lg:text-right lg:block border-top-1 lg:border-top-none surface-border py-3 lg:py-0 mt-3 lg:mt-0 lg:w-4'>
+          <Button
+            label="Crear Cuenta"
+            style={{
+              color: '#CFAC2B', // Color del texto
+              border: '1px solid #CFAC2B', // Contorno del mismo color que el texto
+              backgroundColor: 'transparent', // Sin relleno
+              borderRadius: '50px', // Bordes redondeados (opcional)
+            }}
+          
+            className="mx-3"
+            onClick={"/pages/pantallainicio/createAccount"}
+          />
+        </div>
       </div>
-    );
-  }
+    </div>
+  );
+}
+
 
   const Footer = () => {
     return (
       <div className="footer" style={{ backgroundColor: 'rgb(38, 39, 41)' }}>
         <div className='grid grid-nogutter surface-section px-4 py-4 md:px-6 lg:px-8 border-top-1 surface-border'  >
           <div className='col-12 lg:col-6 lg:border-right-1 surface-border'>
-            <img src={`.svg`} width="47.22px" height={'35px'} widt={'true'} alt="logo" />
+          <Image src={logo} className={styles['logo']} alt="Mi imagen" priority={true} style={{ width: '40px', height: '40px' }}  />
             <span className='text-900 block mt-4 mr-3'>Una aplicación dedicada al análisis de movimientos bancarios. </span>
             <span className='text-500 block mt-4'> © 2024 FinTrack, S.A. Todos los derechos reservados.</span>
           </div>
@@ -303,7 +312,7 @@ export default function Login() {
                 inputid="password1" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Contraseña"
                 feedback={false} className="block text-900  mb-2 w-10 p-3 " inputClassName={`mb-2 w-10 p-3 ${estiloPassword}`} />
 
-              <components.Parrafo onClick={() => toggle(false)} className="font-medium no-underline ml-2 text-right cursor-pointer" style={{ color: 'black', fontStyle: 'italic' }}>¿Olvidaste tu contraseña?</components.Parrafo>
+              <components.Parrafo onClick={() => router.push('/pages/pantallainicio/newpassword')} className="font-medium no-underline ml-2 text-right cursor-pointer" style={{ color: 'black', fontStyle: 'italic' }}>¿Olvidaste tu contraseña?</components.Parrafo>
               <Button label="Iniciar Sesión" 
               style={{ background: 'linear-gradient(to right, #bf9000, #bf9000, #bf9000, #bf9000, #bf9000, #b8a143, #b8a143, #b8a143, #b7993b, #b7993b, #b7993b, #e9c550, #e9c550, #e9c550, #e4bf4d, #e4bf4d, #e4bf4d, #f2d054, #f2d054, #f2d054)', 
                 color: 'black', // Texto negro

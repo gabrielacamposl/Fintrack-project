@@ -86,8 +86,6 @@ const AppConfig = (props) => {
               </div>
             </div>
 
-            <h5>Efecto dominó</h5>
-            <InputSwitch checked={layoutConfig.ripple} onChange={(e) => changeRipple(e)}></InputSwitch>
           </>
         )}
 
@@ -96,21 +94,13 @@ const AppConfig = (props) => {
           
 
           {/* Temas claros */}
-          <div className="col-3">
-            <button
-              className="p-link w-2rem h-2rem" style={{ backgroundColor: '#B6EC8F', height: '200px' }}
-              onClick={() => changeTheme('light-green', 'light')}></button>
-          </div>
+          
           <div className="col-3">
             <button
               className="p-link w-2rem h-2rem" style={{ backgroundColor: '#FF988D', height: '200px' }}
               onClick={() => changeTheme('light-rose', 'light')}></button>
           </div>
-          <div className="col-3">
-            <button
-              className="p-link w-2rem h-2rem" style={{ backgroundColor: '#CF933A', height: '200px' }}
-              onClick={() => changeTheme('light-orange', 'light')}></button>
-          </div>
+          
           <div className="col-3">
             <button
               className="p-link w-2rem h-2rem" style={{ backgroundColor: '#E54150', height: '200px' }}
@@ -118,20 +108,11 @@ const AppConfig = (props) => {
           </div>
 
           {/* Temas oscuros */}
-          <div className="col-3">
-            <button
-              className="p-link w-2rem h-2rem" style={{ backgroundColor: '#B6EC8F', height: '200px' }}
-              onClick={() => changeTheme('dark-green', 'dark')}></button>
-          </div>
+          
           <div className="col-3">
             <button
               className="p-link w-2rem h-2rem" style={{ backgroundColor: '#FF988D', height: '200px' }}
               onClick={() => changeTheme('dark-rose', 'dark')}></button>
-          </div>
-          <div className="col-3">
-            <button
-              className="p-link w-2rem h-2rem" style={{ backgroundColor: '#CF933A', height: '200px' }}
-              onClick={() => changeTheme('dark-orange', 'dark')}></button>
           </div>
           <div className="col-3">
             <button

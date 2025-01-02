@@ -11,7 +11,7 @@ import { useRouter } from 'next/router';
 
 
 
-const perfilDoctor = () => {
+const perfilUser = () => {
   //--> Variable de redireccinamiento
   const [imagen, setImagen] = useState(null);
   const router = useRouter();
@@ -111,47 +111,23 @@ const perfilDoctor = () => {
                     <div className="field mb-4 col-12 md:col-6">
                       <label htmlFor="nombreCompleto" className="block text-900 text-xl font-medium mb-2">Nombre</label>
                       <InputText
-                        id="nombreCompleto" type="text" placeholder="Marco Antonio"
+                        id="nombreCompleto" type="text" placeholder=""
                          />
                     </div>
 
                     <div className="field mb-4 col-12 md:col-6">
                       <label htmlFor="apellidos" className="block text-900 text-xl font-medium mb-2">Apellidos</label>
                       <InputText
-                        id="apellidos" placeholder="García Olvera" type="text"
+                        id="apellidos" placeholder="" type="text"
                          />
                     </div>
-                    <div className="field mb-4 col-12 md:col-6">
-                      <label className="block text-900 text-xl font-medium mb-2" type="text">Teléfono:</label>
-                      <InputText placeholder='Teléfono' />
-                    </div>
-                    <div className="field mb-4 col-12 md:col-6">
-                      <label className="block text-900 text-xl font-medium mb-2" type="text">Especialidad:</label>
-                      <InputText placeholder='Nefrólogo' />
-                    </div>
-                    <div className="field mb-4 col-12 md:col-6">
-                      <label className="block text-900 text-xl font-medium mb-2" type="text">Cédula Profesional:</label>
-                      <InputText placeholder='Cédula Profesional' />
-                    </div>
+                  
+                    
                     <div className="field mb-4 col-12 md:col-6">
                       <label className="block text-900 text-xl font-medium mb-2" type="text">Correo Electrónico:</label>
                       <InputText placeholder='Correo Electrónico' />
-                    </div>
-                    <div className="field mb-4 col-12 md:col-6">
-                      <label className="block text-900 text-xl font-medium mb-2" type="text">Dirección:</label>
-                      <InputText placeholder='Dirección' />
-                    </div>
-                    <div className="field mb-4 col-12 md:col-6">
-                      <label className="block text-900 text-xl font-medium mb-2" type="text">Abrir en google maps:</label>
-                      <InputText placeholder='Dirección en google maps'  />
-                    </div>
-                    <div className="field mb-4 col-12 md:col-6">
-                      <label className="block text-900 text-xl font-medium mb-2" type="text">Descripción:</label>
-                      <InputText placeholder='Descripción sobre usted...'  style={{ width: '100%', height: '150px' }} />
-                    </div>
+                    </div>                   
                   </div>
-                  
-
                 </div>
 
               </div>
@@ -168,4 +144,4 @@ const perfilDoctor = () => {
   );
 }
 
-export default perfilDoctor;
+export default perfilUser;

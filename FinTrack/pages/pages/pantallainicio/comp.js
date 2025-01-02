@@ -1,55 +1,54 @@
 import styled from 'styled-components';
 
- export const Container = styled.div`
- background-color: #fff;
- border-radius: 10px;
- box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
- position: relative;
- overflow: hidden;
- width: 800px;
- height:500px;
- max-width: 100%;
- min-height: 400px;
- `;
+export const Container = styled.div`
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  position: relative;
+  overflow: hidden;
+  width: 1200px;
+  height: 700px;
+  max-width: 100%;
+  min-height: 400px;
+`;
 
- export const SignUpContainer = styled.div`
+export const SignUpContainer = styled.div`
   position: absolute;
   top: 0;
   height: 100%;
   transition: all 0.6s ease-in-out;
-  left: 0;
-  width: 50%;
-  opacity: 0;
+  right: 70%;
+  width: 70%;
   z-index: 1;
-  ${props => props.signinIn !== true ? `
+  opacity: 0;
+ ${props => props.signinIn !== true ? `
     transform: translateX(100%);
     opacity: 1;
     z-index: 5;
   ` 
   : null}
  `;
- 
 
- export const SignInContainer = styled.div`
- position: absolute;
- top: 0;
- height: 100%;
- transition: all 0.6s ease-in-out;
- left: 0;
- width: 50%;
- z-index: 2;
- ${props => (props.signinIn !== true ? `transform: translateX(100%);` : null)}
- `;
- 
- export const Form = styled.div` //MODIFICAR A .form para que sea un formulario o realizar el form en el index
- display: flex;
- align-items: center;
- justify-content: center;
- flex-direction: column;
- padding: 0 50px;
- height: 100%;
- text-align: center;
- `;
+export const SignInContainer = styled.div`
+  position: absolute;
+  top: 0;
+  height: 100%;
+  transition: all 0.6s ease-in-out;
+  left: 0 ;
+  width: 70%;
+  z-index: 2;
+  ${props => (props.signinIn !== true ? `transform: translateX(100%);` : null)}
+`;
+
+export const Form = styled.form`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 50px;
+  height: 100%;
+  text-align: center;
+`;
  
  export const Title = styled.h1`
  font-weight: bold;
@@ -61,14 +60,16 @@ import styled from 'styled-components';
  color: transparent;
  `;
 
- export const Title2 = styled.h1`
-   font-weight: bold; 
-   margin: 0;
-   font-family: 'Avenir Next LT Pro', sans-serif; 
-   font-size: 3em; 
-   color: white; 
-   font-style: normal; 
- `;
+ export const Title2 = styled.h5`
+  font-weight: normal;
+  margin: 0;
+  font-family: 'California FB', serif;
+  font-size: 1.5em;
+  -webkit-background-clip: text;
+  color: #b8a143;
+  font-style: italic;
+  
+`;
  
 
  export const Title3 = styled.h1`
@@ -133,67 +134,69 @@ color: transparent;
  font-size: 14px;
  margin: 15px 0;
  `;
+
+
  export const OverlayContainer = styled.div`
-position: absolute;
-top: 0;
-left: 50%;
-width: 50%;
-height: 100%;
-overflow: hidden;
-transition: transform 0.5s ease-in-out;
-z-index: 100;
-${props =>
-  props.signinIn !== true ? `transform: translateX(-100%);` : null}
+  position: absolute;
+  top: 0;
+  left: 70%;
+  width: 30%;
+  height: 100%;
+  overflow: hidden;
+  transition: transform 0.5s ease-in-out;
+  z-index: 100;
+  ${props => (props.signinIn !== true ? `transform: translateX(-100%);` : null)}
 `;
 
 export const Overlay = styled.div`
-background: #ff416c;
-background: -webkit-linear-gradient(to right, #ff4b2b, #ff416c);
-background: linear-gradient(to right, #ff4b2b, #ff416c);
-background-repeat: no-repeat;
-background-size: cover;
-background-position: 0 0;
-color: #ffffff;
-position: relative;
-left: -100%;
-height: 100%;
-width: 200%;
-transform: translateX(0);
-transition: transform 0.5s ease-in-out;
-${props => (props.signinIn !== true ? `transform: translateX(50%);` : null)}
+  background: rgb(27, 25, 25);
+  background: -webkit-linear-gradient(to right, rgb(36, 34, 34), rgb(20, 20, 20));
+  background: linear-gradient(to right, rgb(17, 17, 17), rgb(14, 14, 14));
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 0 0;
+  color: #ffffff;
+  position: relative;
+  left: -100%;
+  height: 100%;
+  width: 210%;
+  transform: translateX(0);
+  transition: transform 0.5s ease-in-out;
+  ${props => (props.signinIn !== true ? `transform: translateX(50%);` : null)}
 `;
- 
- export const OverlayPanel = styled.div`
-     position: absolute;
-     display: flex;
-     align-items: center;
-     justify-content: center;
-     flex-direction: column;
-     padding: 0 40px;
-     text-align: center;
-     top: 0;
-     height: 100%;
-     width: 50%;
-     transform: translateX(0);
-     transition: transform 0.6s ease-in-out;
- `;
 
- export const leftOverLayPanel = styled(OverlayPanel)`
-   transform: translateX(-20%);
-   ${props => props.signinIn !== true ? `transform: translateX(0);` : null}
- `;
+export const OverlayPanel = styled.div`
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 40px;
+  text-align: center;
+  top: 0;
+  height: 100%;
+  width: 55%;
+  transform: translateX(0);
+  transition: transform 0.6s ease-in-out;
+`;
 
- export const RightOverLayPanel = styled(OverlayPanel)`
-     right: 0;
-     transform: translateX(0);
-     ${props => props.signinIn !== true ? `transform: translateX(20%);` : null}
- `;
 
- export const Parrafo = styled.p`
- font-size: 13px;
-   font-weight: 100;
-   letter-spacing: 0.5px;
+export const leftOverLayPanel = styled(OverlayPanel)`
+  transform: translateX(-20%);
+  ${props => (props.signinIn !== true ? `transform: translateX(0);` : null)}
+`;
 
- `;
+export const RightOverLayPanel = styled(OverlayPanel)`
+  right: 0;
+  transform: translateX(0);
+  ${props => (props.signinIn !== true ? `transform: translateX(20%);` : null)}
+`;
+
+export const Parrafo = styled.p`
+  font-size: 13px;
+  font-weight: 100;
+  letter-spacing: 0.5px;
+  font-style: bold, italic;
+`;
 
  

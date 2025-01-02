@@ -11,6 +11,11 @@ import { useRouter } from 'next/router';
 import { temporizador } from '@/helpers/funciones';
 import { campoVacio, longiudTokenInvalida, tokenExpirado, exitoToken } from '@/helpers/constantes/mensajes';
 import { validarToken } from '@/helpers/constantes/links';
+import Image from 'next/image';
+import logoN from '/imagenes/login/FT.jpg';
+import styles from '/styles/styles.module.css';
+import logo from '/imagenes/login/FTl.jpg';
+import * as components from './comp';
 
 const Token = () => {
   //--> Variable de redireccinamiento
@@ -98,95 +103,106 @@ const Token = () => {
 
   const Topbar = () => {
     return (
-      <div className="topbar">
-        <div className='surface-overlay py-3 px-6 shadow-2 flex align-items-center justify-content-between relative lg:static'>
-          <img src={`/XZY.svg`} width="47.22px" height={'35px'} widt={'true'} alt="logo" />
-          <h5> MedXiZhongYao</h5>
-        <a className='p-ripple cursor-pointer block lg:hidden text-700'>
-          <i className='pi pi-bars text-4x1'> 
-          </i>
-        </a>
-        <div className='align-items-center flex-grown-1 hidden lg:flex absolute lg:static w-full surface-overlay left-0 top-100 px-6 lg:px-0 z-2 shadow-2 lg:shadow-none'>
-          <ul className='list-none p-0 m-0 flex lg:align-items-center text-900 select-none flex-column lg:flex-row cursor-pointer lg:w-4'></ul>
+      <div className="topbar" >
+        <div className=' py-3 px-6 shadow-2 flex align-items-center justify-content-between relative lg:static' style={{ backgroundColor: '#13121A' }}>
+        <Image src={logoN} className={styles['logo']} alt="Mi imagen" priority={true} style={{ width: '50px', height: '50px' }} />
+          <components.Title4>FinTrack</components.Title4>
+          <a className='p-ripple cursor-pointer block lg:hidden text-700'>
+            <i className='pi pi-bars text-4x1'>
+            </i>
+          </a>
+          <div className='align-items-center flex-grown-1 hidden lg:flex absolute lg:static w-full surface-overlay left-0 top-100 px-6 lg:px-0 z-2 shadow-2 lg:shadow-none'>
+            <ul className='list-none p-0 m-0 flex lg:align-items-center text-900 select-none flex-column lg:flex-row cursor-pointer lg:w-4'></ul>
+          </div>
+          <div className='flex justify-content-end lg:text-right lg:block border-top-1 lg:border-top-none surface-border py-3 lg:py-0 mt-3 lg:mt-0 lg:w-4'>
+            <Button
+              label="Iniciar Sesión"
+              style={{
+                color: '#CFAC2B', // Color del texto
+                border: '1px solid #CFAC2B', // Contorno del mismo color que el texto
+                backgroundColor: 'transparent', // Sin relleno
+                borderRadius: '50px', // Bordes redondeados (opcional)
+              }}
+            
+              className="mx-2"
+              link
+              onClick={"/pages/pantallainicio/createAccount"}
+            />
+          </div>
         </div>
-        <div className='flex justify-content-end lg:text-right lg:block border-top-1 lg:border-top-none surface-border py-3 lg:py-0 mt-3 lg:mt-0 lg:w-4'>
-          <Button className=' p-button p-component font-bold p-button-outolined p-button-rounded  '   onClick={() => { router.push('/') }}> Iniciar Sesión</Button>
-        </div>
-
-        </div>
-        
       </div>
     );
   }
 
   const Footer = () => {
     return (
-      <div className="footer">
-        <div className='grid grid-nogutter surface-section px-4 py-4 md:px-6 lg:px-8 border-top-1 surface-border'>
+      <div className="footer" style={{ backgroundColor: 'rgb(38, 39, 41)' }}>
+        <div className='grid grid-nogutter surface-section px-4 py-4 md:px-6 lg:px-8 border-top-1 surface-border'  >
           <div className='col-12 lg:col-6 lg:border-right-1 surface-border'>
-          <img src={`/XZY.svg`} width="47.22px" height={'35px'} widt={'true'} alt="logo" />
-          <span className='text-900 block mt-4 mr-3'>Una empresa dedicada al cuidado se su salud, con la mejor tecnología y los mejores profesionistas.</span>
-          <span className='text-500 block mt-4'> © 2023 XiZhongYao, S.A. Todos los derechos reservados.</span>
+          <Image src={logo} className={styles['logo']} alt="Mi imagen" priority={true} style={{ width: '40px', height: '40px' }}  />
+            <span className='text-900 block mt-4 mr-3'>Una aplicación dedicada al análisis de movimientos bancarios, para que estés siempre al tanto de estos. </span>
+            <span className='text-500 block mt-4'> © 2024 FinTrack, S.A. Todos los derechos reservados.</span>
           </div>
           <div className='col-12 md:col-6 lg:col-3 mt-4 lg:mt-0 lg:pl-4 flex flex-column'>
             <span className='text-900 text-xl font-medium block'>Compañía</span>
             <ul className='list-none p-0'>
               <li>
-                <a tabIndex={0} className='text-600 hover:text-900 transition-duration-150 cursor-pointer mt-3 block'>Sobre XiZhongYao</a>
+                <a tabIndex={0} className='text-600 hover:text-900 transition-duration-150 cursor-pointer mt-3 block'>Sobre FinTrack</a>
               </li>
               <li>
                 <a tabIndex={0} className='text-600 hover:text-900 transition-duration-150 cursor-pointer mt-3 block'>¿Quiénes somos?</a>
-              </li>   
+              </li>
             </ul>
           </div>
           <div className='col-12 md:col-6 lg:col-3 mt-4 lg:mt-0 lg:pl-4 flex flex-column'>
-            <span className='text-900 text-xl font-medium block'>Para Pacientes</span>
+            <span className='text-900 text-xl font-medium block'>Para Usuarios</span>
             <ul className='list-none p-0'>
               <li>
-                <a tabIndex={0} className='text-600 hover:text-900 transition-duration-150 cursor-pointer mt-3 block'>Especialistas</a>
+                <a tabIndex={0} className='text-600 hover:text-900 transition-duration-150 cursor-pointer mt-3 block'>Análisis</a>
               </li>
               <li>
-                <a tabIndex={0} className='text-600 hover:text-900 transition-duration-150 cursor-pointer mt-3 block'>Diagnóstico por Interpretaciones</a>
+                <a tabIndex={0} className='text-600 hover:text-900 transition-duration-150 cursor-pointer mt-3 block'>Movimientos Bancarios</a>
               </li>
             </ul>
           </div>
         </div>
-        
+
         <div class="surface-900 py-6 lg:py-4 md:px-6 lg:px-8 flex flex-column lg:flex-row justify-content-between align-items-center">
           <ul class="list-none p-0 mb-0 flex flex-column md:flex-row flex-order-1 lg:flex-order-0 mt-4 lg:mt-0">
-              <li class="mr-4 mt-3 lg:mt-0">
-                <a tabindex="0" class="cursor-pointer text-0">Datos de Privacidad</a>
-                </li>
-                <li class="mr-4 mt-3 lg:mt-0">
-                  <a tabindex="0" class="cursor-pointer text-0">Términos y Condiciones</a>
-                  </li>
-                  <li class="mr-4 mt-3 lg:mt-0">
-                    <a tabindex="0" class="cursor-pointer text-0">Información Legal</a>
-                    </li>
-                    </ul>
-                    <div class="flex align-items-center flex-order-0 lg:flex-order-1">
-                      <a tabindex="0" class="cursor-pointer mr-3 lg:mt-0 block"> 
-                      <i class="pi pi-facebook surface-section p-1 text-sm border-circle text-900">
-                      </i>
-                      </a>
-                      <a tabindex="0" class="cursor-pointer mr-3 lg:mt-0 block">
-                        <i class="pi pi-twitter surface-section p-1 text-sm border-circle text-900"></i>
-                      </a>
-                        <a tabindex="0" class="cursor-pointer mr-3 lg:mt-0 block">
-                          <i class="pi pi-youtube surface-section p-1 text-sm border-circle text-900"></i>
-                        </a>
-                      </div>
+            <li class="mr-4 mt-3 lg:mt-0">
+              <a tabindex="0" class="cursor-pointer text-0">Datos de Privacidad</a>
+            </li>
+            <li class="mr-4 mt-3 lg:mt-0">
+              <a tabindex="0" class="cursor-pointer text-0">Términos y Condiciones</a>
+            </li>
+            <li class="mr-4 mt-3 lg:mt-0">
+              <a tabindex="0" class="cursor-pointer text-0">Información Legal</a>
+            </li>
+          </ul>
+          <div class="flex align-items-center flex-order-0 lg:flex-order-1">
+            <a tabindex="0" class="cursor-pointer mr-3 lg:mt-0 block">
+              <i class="pi pi-facebook surface-section p-1 text-sm border-circle text-900">
+              </i>
+            </a>
+            <a tabindex="0" class="cursor-pointer mr-3 lg:mt-0 block">
+              <i class="pi pi-twitter surface-section p-1 text-sm border-circle text-900"></i>
+            </a>
+            <a tabindex="0" class="cursor-pointer mr-3 lg:mt-0 block">
+              <i class="pi pi-youtube surface-section p-1 text-sm border-circle text-900"></i>
+            </a>
           </div>
-        
+        </div>
+
       </div>
     );
   }
 
+
   const estiloDelFondo = {
-    backgroundImage: 'url("https://i.pinimg.com/736x/d8/5e/51/d85e51f6ecd887757843ad99d8a41bf9.jpg")', // Cambia la ruta por la de tu imagen
-    backgroundSize: 'cover', // Puedes ajustar esto según tus preferencias
-    backgroundPosition: 'center', // Puedes ajustar esto según tus preferencias
-    // Otros estilos que desees agregar
+    backgroundImage: 'url("https://i.pinimg.com/736x/ed/19/1c/ed191c06de82a9962f24af5cf35be0d0.jpg") ', //  ruta imagen
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+
   };
 
   //---------------------------| Valor que regresara |---------------------------

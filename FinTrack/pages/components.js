@@ -99,6 +99,17 @@ export const Title3 = styled.h1`
   color: black;
 `;
 
+export const Title4 = styled.h5`
+font-weight: normal;
+margin-top: 0px;
+font-family: 'Times New Roman', serif; 
+font-size: 2em; 
+background: linear-gradient(to right, #BF9000, #BF9000, #BF9000, #BF9000, #BF9000, #B8A143, #B8A143, #B8A143, #B7993B, #B7993B, #B7993B, #E9C550, #E9C550, #E9C550, #E4BF4D, #E4BF4D, #E4BF4D, #F2D054, #F2D054, #F2D054);
+-webkit-background-clip: text;
+color: transparent;
+`;
+
+
 export const Input = styled.input`
   background-color: #eee;
   border: none;

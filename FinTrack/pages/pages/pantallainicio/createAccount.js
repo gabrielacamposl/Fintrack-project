@@ -10,9 +10,10 @@ import { InputText } from "primereact/inputtext";
 import { useRouter } from 'next/router';
 import * as components from './comp';
 import 'primeicons/primeicons.css';
-
-//-->Imagenes 
-
+import Image from 'next/image';
+import logoN from '/imagenes/login/FT.jpg';
+import styles from '/styles/styles.module.css';
+import logo from '/imagenes/login/FTl.jpg';
 
 //--> Componentes propios
 import { camposVacios, emailInvalido, exitoCuenta, passwordInvalido, passwordsInValidas, formatoNombre } from '@/components/mensajesNotificaciones/mensajes';
@@ -188,9 +189,9 @@ const createAccount = () => {
 
   const Topbar = () => {
     return (
-      <div className="topbar"  >
-        <div className=' py-3 px-6 shadow-2 flex align-items-center justify-content-between relative lg:static' style={{ backgroundColor: 'rgb(38, 39, 41)' }}>
-          <img src={`/layout/images/FT.jpg`} width="47.22px" height={'35px'} widt={'true'} alt="logo" />
+      <div className="topbar" >
+        <div className=' py-3 px-6 shadow-2 flex align-items-center justify-content-between relative lg:static' style={{ backgroundColor: '#13121A' }}>
+        <Image src={logoN} className={styles['logo']} alt="Mi imagen" priority={true} style={{ width: '50px', height: '50px' }} />
           <components.Title4>FinTrack</components.Title4>
           <a className='p-ripple cursor-pointer block lg:hidden text-700'>
             <i className='pi pi-bars text-4x1'>
@@ -206,8 +207,9 @@ const createAccount = () => {
                 color: '#CFAC2B', // Color del texto
                 border: '1px solid #CFAC2B', // Contorno del mismo color que el texto
                 backgroundColor: 'transparent', // Sin relleno
-                borderRadius: '5px', // Bordes redondeados (opcional)
+                borderRadius: '50px', // Bordes redondeados (opcional)
               }}
+            
               className="mx-2"
               link
               onClick={cancelarCreacion}
@@ -223,8 +225,8 @@ const createAccount = () => {
       <div className="footer" style={{ backgroundColor: 'rgb(38, 39, 41)' }}>
         <div className='grid grid-nogutter surface-section px-4 py-4 md:px-6 lg:px-8 border-top-1 surface-border'  >
           <div className='col-12 lg:col-6 lg:border-right-1 surface-border'>
-            <img src={`.svg`} width="47.22px" height={'35px'} widt={'true'} alt="logo" />
-            <span className='text-900 block mt-4 mr-3'>Una aplicación dedicada al análisis </span>
+          <Image src={logo} className={styles['logo']} alt="Mi imagen" priority={true} style={{ width: '40px', height: '40px' }}  />
+            <span className='text-900 block mt-4 mr-3'>Una aplicación dedicada al análisis de movimientos bancarios, para que estés siempre al tanto de estos. </span>
             <span className='text-500 block mt-4'> © 2024 FinTrack, S.A. Todos los derechos reservados.</span>
           </div>
           <div className='col-12 md:col-6 lg:col-3 mt-4 lg:mt-0 lg:pl-4 flex flex-column'>
@@ -307,14 +309,19 @@ const createAccount = () => {
       <Head>
         <title>FinTrack - Create an Account</title>
         <meta charSet="UTF-8" />
-        <link rel="icon" href={`/XZY.ico`} type="image/x-icon"></link>
+        <link rel="icon" href={`/FT.ico`} type="image/x-icon"></link>
       </Head>
 
       <div>
         <div className='px-4 py-8 md:px-6 lg:px-8' style={estiloDelFondo}>
           <div className='flex flex-wrap'>
             <div className='w-full lg:w-6 p-4 lg:p7' style={color}>
-              <img src={`/layout/images/XZY.svg`} alt='Image' height='50' className='mb-6' />
+            {/* <Image src={logo2} className={styles['my-image']} alt="Mi imagen"
+                  priority={true} style={{
+                    height: '70px', width: '70px',
+                    marginTop: '120px',
+                  }}
+                /> */}
               <div className='text-xl text-black-alpha-90 font-500 mb-3'>
                 <components.Title2>Bienvenido a FinTrack</components.Title2>
               </div>
@@ -427,6 +434,7 @@ const createAccount = () => {
                       backgroundColor: '#FFE1AE',
                       color: 'black',
                       textAlign: 'center',
+                      borderRadius: '50px',
                       float: 'right' // Para alinear el botón a la derecha
                     }}
                   />
