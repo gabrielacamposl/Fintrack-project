@@ -20,9 +20,7 @@ import {
   campoVacio, camposVacios, emailInvalido, passwordInvalido, resetearExitoso
 } from '@/components/mensajesNotificaciones/mensajes';
 
-
-
-
+import UserPool from '../pages/api/UserPool';
 export default function Login() {
 
 
@@ -155,7 +153,7 @@ export default function Login() {
             }}
           
             className="mx-3"
-            onClick={"/pages/pantallainicio/createAccount"}
+            onClick={() => router.push('/pages/pantallainicio/createAccount')}
           />
         </div>
       </div>

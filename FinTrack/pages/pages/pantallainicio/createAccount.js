@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { use, useState } from 'react'
 import Head from 'next/head';
 import AppConfig from '@/layout/AppConfig';
 import axios from 'axios';
@@ -19,7 +19,7 @@ import logo from '/imagenes/login/FTl.jpg';
 import { camposVacios, emailInvalido, exitoCuenta, passwordInvalido, passwordsInValidas, formatoNombre } from '@/components/mensajesNotificaciones/mensajes';
 import { nuevoUsuario } from '@/components/mensajesNotificaciones/links';
 
-
+import UserPool from '@/pages/api/UserPool';
 const createAccount = () => {
   //--> Variable de redireccinamiento
   const router = useRouter();
@@ -62,109 +62,75 @@ const createAccount = () => {
 
   //-----------------------| Envio |-----------------------
   const crearUsuario = async () => {
-    //--> Validar campos llenos
-    if ([email, nombre, apellido, password, confirmPassword].includes('')) {
-      if (!email) setEstiloEmail('p-invalid')
-      if (!nombre) setEstiloNombre('p-invalid')
-      if (!apellido) setEstiloNombre('p-invalid')
-      if (!password) setEstiloPassword('p-invalid')
-      if (!confirmPassword) setEstiloConfirmPass('p-invalid')
-      setMensajeRespuesta(camposVacios)
-      setEstiloMensajeRespuesta('error')
-
-      setTimeout(() => { setMensajeRespuesta('') }, 3000);
-      return
-    } else {
-      setEstiloEmail('')
-      setEstiloNombre('')
-      setEstiloApellido('')
-      setEstiloPassword('')
-      setEstiloConfirmPass('')
-    }
-
-    if (/^\d*$/.test(nombre, apellido)) {
-      setEstiloNombre('p-invalid')
-      setEstiloApellido('p-invalid')
-      setMensajeRespuesta(formatoNombre)
-      setEstiloMensajeRespuesta('error')
-      setTimeout(() => { setMensajeRespuesta('') }, 3000);
-      return
-    } else {
-      setEstiloNombre('')
-      setEstiloApellido('')
-    }
-
-    if (/^\d*$/.test(apellido)) {
-      setEstiloApellido('p-invalid')
-      setMensajeRespuesta(formatoNombre)
-      setEstiloMensajeRespuesta('error')
-      setTimeout(() => { setMensajeRespuesta('') }, 3000);
-      return
-    } else {
-      setEstiloApellido('')
-    }
-
-
-    //--> Validar email
-    if (!validarEmail.test(email)) {
-      setEstiloEmail('p-invalid')
-      setEstiloMensajeRespuesta('error')
-      setMensajeRespuesta(emailInvalido)
-      setTimeout(() => { setMensajeRespuesta('') }, 3000);
-      return
-    } else { setEstiloEmail('') }
-
-    //--> Validar password
-    if (password.length < 6) {
-      setEstiloPassword('p-invalid')
-      setEstiloMensajeRespuesta('error')
-      setMensajeRespuesta(passwordInvalido)
-      setTimeout(() => { setMensajeRespuesta('') }, 3000);
-      return
-    } else { setEstiloPassword('') }
-
-    //--> Comprobar passwords iguales
-    if (password !== confirmPassword) {
-      setEstiloPassword('p-invalid')
-      setEstiloConfirmPass('p-invalid')
-      setEstiloMensajeRespuesta('error')
-      setMensajeRespuesta(passwordsInValidas)
-      setTimeout(() => { setMensajeRespuesta('') }, 3000);
-      return
-    } else {
-      setEstiloPassword('')
-      setEstiloConfirmPass('')
-    }
-
-
-    try {
-      const objetoCrearUsuario = {
-        nameUser: nombre, surnameUser: apellido, emailUser: email, passwordUser: password
-      }
-      const respuesta = await axios.post(nuevoUsuario, objetoCrearUsuario)
-      //--> Limpiar campos
-      setEmail('')
-      setNombre('')
-      setApellido('')
-      setPassword('')
-      setEstiloConfirmPass('')
-      //--> Redireccionar
-      if (respuesta.status === 200) {
-        //--> Notificar estatus después de validarlo con back-end
-        setMensajeRespuesta(exitoCuenta)
+/*
+    UserPool.signUp(email, password, [], null, (err, data) => {
+      if (err) {
+        console.error(err);
+        setEstiloMensajeRespuesta('error')
+        setMensajeRespuesta(err.message)
+        setTimeout(() => { setMensajeRespuesta('') }, 3000)
+      } else {
+        console.log(data);
         setEstiloMensajeRespuesta('success')
+        setMensajeRespuesta(exitoCuenta)
         setTimeout(() => { router.push('/pages/pantallainicio/token') }, 1000)
       }
-    } catch (error) {
-      console.log(error);
-      setEstiloMensajeRespuesta('error')
-      //setMensajeRespuesta(error.response.data.msg) ctrl+k
-      setMensajeRespuesta("Este correo ya está en uso.")
-      setTimeout(() => { setMensajeRespuesta('') }, 3000)
-    }
-  }
+    });
+*/
+    const AWS = require('aws-sdk');
+    const crypto = require('crypto');
+
+    const clientId = '4htk2relqvm1g6m0i41urlpm4v';
+    const clientSecret = '19smboed62vaniknfl3tujljonv1u5fnltuugqoh32bgs2fjlouq';
+    const username = email;
 
 
+    console.log('Username:', username);
+    console.log('Password:', password);
+
+    AWS.config.update({
+      region: 'us-east-1'
+    });
+
+    const secretHash = crypto.createHmac('SHA256', clientSecret)
+                             .update(username + clientId)
+                             .digest('base64');
+
+    const cognito = new AWS.CognitoIdentityServiceProvider();
+
+    const params = {
+      ClientId: clientId,
+      Username: username,
+      Password: password,
+      SecretHash: secretHash,
+      UserAttributes: [
+        {
+          Name: 'email',
+          Value: username
+        },
+        {
+          Name: 'name',
+          Value: nombre +" "+ apellido 
+        }
+      ]
+    };
+
+
+    cognito.signUp(params, (err, data) => {
+      if (err) {
+        console.error('Error:', err);
+        setEstiloMensajeRespuesta('error')
+        setMensajeRespuesta(err.message)
+        setTimeout(() => { setMensajeRespuesta('') }, 3000)
+      } else {
+        console.log('Success:', data);
+        setEstiloMensajeRespuesta('success')
+        setMensajeRespuesta(exitoCuenta)
+        setTimeout(() => { router.push('/pages/pantallainicio/token') }, 1000)
+      }
+    });
+};
+  
   const cancelarCreacion = () => {
     //--> Limpiar campos de entrada antes de salir
     setNombre('')
@@ -182,6 +148,8 @@ const createAccount = () => {
 
     //--> Redireccionar
     router.push('/')
+
+    
 
   }
 
