@@ -126,6 +126,7 @@ const createAccount = () => {
         console.log('Success:', data);
         setEstiloMensajeRespuesta('success')
         setMensajeRespuesta(exitoCuenta)
+        //Aquí hay que ver que onda xd
         setTimeout(() => { router.push('/pages/pantallainicio/token') }, 1000)
       }
     });
